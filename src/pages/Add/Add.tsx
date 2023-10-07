@@ -14,7 +14,6 @@ const Add = () => {
     addDoc(docRef, task)
     navigate("/");
   };
-  console.log(task)
   return (
     <div className="settings-window-container">
       <div className="w-75">
