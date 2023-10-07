@@ -1,15 +1,27 @@
 import { useEffect, useRef, useState } from 'react';
-import { optionsProps } from '../components/Select';
+import { SelectedValueProps } from '../context/SelectedValueContext';
+import useSelectedValueContext from './useSelectedValueContext';
 
 
 
 interface props {
-    setSelectedOption: (value: optionsProps) => void;
+    className: string;
+}
+export interface optionsProps {
+  label: string;
+  image?: string;
+  value: string;
 }
 
-const useSelectRef = ({setSelectedOption}: props) => {
+const useSelectRef = ({className}: props) => {
 
     const selectRef = useRef<HTMLDivElement | null>(null);
+    const [selectedOption, setSelectedOption] = useState<optionsProps>({
+      image: "",
+      label: "",
+      value: "",
+    });
+    const { setSelectedValues } = useSelectedValueContext();
     const [isOpen, setIsOpen] = useState(false);
     const handleOutsideClick = (e: MouseEvent) => {
       if (selectRef.current && !selectRef.current.contains(e.target as Node)) {
@@ -32,8 +44,15 @@ const useSelectRef = ({setSelectedOption}: props) => {
       };
     }, []);
 
+    useEffect(() => {
+      setSelectedValues((prev: SelectedValueProps) => ({
+        ...prev,
+        [className]: selectedOption.value
+      }))
+    },[selectedOption, setSelectedValues, className])
 
-  return {selectRef, isOpen, toggleDropdown, handleOptionClick}
+
+  return {selectRef, isOpen, toggleDropdown, handleOptionClick, selectedOption}
 }
 
 export default useSelectRef
