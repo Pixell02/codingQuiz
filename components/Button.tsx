@@ -3,7 +3,7 @@ import "./Button.css";
 interface props {
     name: string
     onClick: () => void;
-    blocked?: boolean
+    blocked?: boolean;
 }
 
 const Button = ({name, onClick, blocked}: props) => {
