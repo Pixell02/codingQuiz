@@ -1,12 +1,13 @@
-import "./Button.css"
+import "./Button.css";
 
 interface props {
     name: string
+    onClick: () => void;
 }
 
-const Button = ({name}: props) => {
+const Button = ({name, onClick}: props) => {
   return (
-    <button className='rounded-button'>
+    <button className='rounded-button' onClick={onClick}>
         {name}
     </button>
   )
