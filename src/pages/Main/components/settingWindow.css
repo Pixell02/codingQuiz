@@ -1,0 +1,13 @@
+.settings-window-container {
+    min-height: 350px;
+    border: 1px solid rgb(230, 230, 230);
+    border-width: 5px;
+    border-radius: 20px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    width: 800px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
