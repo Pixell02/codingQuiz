@@ -1,4 +1,3 @@
-import { useState } from "react";
 import useSelectRef from "../hooks/useSelectRef";
 import "./Select.css";
 
@@ -11,15 +10,12 @@ export interface optionsProps {
 interface props {
   options: optionsProps[];
   name: string;
+  className: string;
 }
 
-const Select = ({ options, name }: props) => {
-  const [selectedOption, setSelectedOption] = useState<optionsProps>({
-    image: "",
-    label: "",
-    value: "",
-  });
-  const { selectRef, toggleDropdown, handleOptionClick, isOpen } = useSelectRef({ setSelectedOption });
+const Select = ({ options, className, name}: props) => {
+  
+  const { selectRef, toggleDropdown, handleOptionClick, isOpen, selectedOption } = useSelectRef({ className });
 
   return (
     <div className="custom-select">
