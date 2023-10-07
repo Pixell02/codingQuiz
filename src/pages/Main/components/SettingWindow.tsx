@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import Button from "../../../../components/Button";
 import Select from "../../../../components/Select";
 import useCodingLanguage from "../../../../hooks/useCodingLanguage";
@@ -8,14 +9,22 @@ const SettingWindow = () => {
   
   const LanguageOptions = useCodingLanguage();
   const levelOptions = useCodingLevel();
+  const navigate = useNavigate();
+
+  const handleStartPress = () => {
+    navigate("/quiz");
+  }
+  const handleAddPress = () => {
+    navigate("/add")
+  }
 
   return (
     <div className="settings-window-container">
       <div className="w-75 d-flex flex-column h-100 justify-content-around">
         <Select options={LanguageOptions} name="Wybierz język" />
         <Select options={levelOptions} name="Wybierz poziom" />
-        <Button name="Rozpocznij" />
-        <Button name="Dodaj nowe pytanie" />
+        <Button name="Rozpocznij" onClick={handleStartPress} />
+        <Button name="Dodaj nowe pytanie" onClick={handleAddPress} />
       </div>
     </div>
   );
