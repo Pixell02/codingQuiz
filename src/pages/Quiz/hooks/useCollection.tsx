@@ -1,12 +1,12 @@
 import {
-    CollectionReference,
-    DocumentData,
-    Query,
-    QuerySnapshot,
-    collection,
-    onSnapshot,
-    query,
-    where,
+  CollectionReference,
+  DocumentData,
+  Query,
+  QuerySnapshot,
+  collection,
+  onSnapshot,
+  query,
+  where,
 } from "firebase/firestore";
 
 import { useEffect, useState } from "react";
@@ -14,9 +14,8 @@ import { db } from "../../../../firebase/config";
 import useSelectedValueContext from "../../../../hooks/useSelectedValueContext";
 
 const useCollection = () => {
-  const [documents, setDocuments] = useState<DocumentData | null>(null);
+  const [documents, setDocuments] = useState<DocumentData[]>([]);
   const { selectedValues } = useSelectedValueContext();
-
   useEffect(() => {
     const fetchData = async () => {
       const ref: CollectionReference | Query = query(
@@ -32,7 +31,6 @@ const useCollection = () => {
           results.push({ ...doc.data(), id: doc.id } as DocumentData);
         });
 
-        // If you want to store all documents matching the query, you can update state accordingly
         setDocuments(results);
       });
 
