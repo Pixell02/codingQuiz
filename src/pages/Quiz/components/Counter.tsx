@@ -1,6 +1,6 @@
 import useQuestionContext from "../hooks/useQuestionContext";
 
-const Couter = () => {
+const Counter = () => {
     const {currentNumber} = useQuestionContext();
   return (
     <div>
@@ -9,4 +9,4 @@ const Couter = () => {
   )
 }
 
-export default Couter
+export default Counter
